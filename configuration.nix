@@ -13,9 +13,8 @@
 	# Bootloader.
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-	boot.crashDump.enable = true;
 
-	networking.hostName = "cryochamber"; # Define your hostname.
+	networking.hostName = "vault"; # Define your hostname.
 	# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 	# Configure network proxy if necessary
@@ -98,11 +97,6 @@
 	};
 
 	services.gvfs.enable = true;
-
-	hardware.graphics = {
-		enable = true;
-		enable32Bit = true;
-	};
 
 	hardware.bluetooth = {
 		enable = true;
