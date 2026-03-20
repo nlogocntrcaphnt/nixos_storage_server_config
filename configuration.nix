@@ -50,7 +50,7 @@
 	};
 
 	# Define a user account. Don't forget to set a password with ‘passwd’.
-	users.users.polyphemus = {
+	users.users.erysichthon = {
 		isNormalUser = true;
 		description = "Constantine";
 		extraGroups = [ "networkmanager" "wheel" "video" "render" ];
@@ -102,12 +102,6 @@
 	hardware.graphics = {
 		enable = true;
 		enable32Bit = true;
-#		extraPackages = with pkgs; [
-#			libva
-#			libva-utils
-#			libva-vdpau-driver
-#			libvdpau-va-gl
-#		];
 	};
 
 	hardware.bluetooth = {
@@ -136,8 +130,6 @@
 
 	hardware.logitech.wireless.enable = true;
 	hardware.logitech.wireless.enableGraphical = true;
-
-
 
 	programs.sway = {
 		enable = true;
@@ -172,7 +164,6 @@
 		enableSSHSupport = true;
 	};
 
-
 	fonts.packages = with pkgs; [
 		terminus_font
 		noto-fonts
@@ -182,7 +173,6 @@
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
 		firefox
-		ungoogled-chromium
 
 		pcmanfm
 		ffmpegthumbnailer
@@ -198,20 +188,8 @@
 
 		yt-dlp
 		aria2
-		nicotine-plus
-
-		telegram-desktop
-		discord
-
-		newsboat
 
 		mpv
-		obs-studio
-		mpd
-		ncmpcpp
-		zathura		
-
-		gimp3
 
 		htop
 		lm_sensors
@@ -229,19 +207,10 @@
 		ffmpeg-full
 		alsa-utils
 
-		ollama-vulkan
-		codex
-
 		rtorrent
 
 		fastfetch
-		sherlock
 	];
-	
-#	environment.variables = {
-#		ROC_ENABLE_PRE_VEGA = "1";
-#		VDPAU_DRIVER = "radeonsi";
-#	};
 
 
   # Some programs need SUID wrappers, can be configured further or are
