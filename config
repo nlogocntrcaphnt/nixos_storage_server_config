@@ -1,0 +1,284 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+
+set $mod Mod4
+
+#set terminal emulator
+set $term foot
+
+#set application launcher
+set $menu wmenu-run -f "Terminus 8" -N '#1D1D1D' -n '#aaaaaa' -S '#8a7b70' -s '#1D1D1D'
+
+#set default font  
+font pango:Terminus 9
+
+#set default border
+default_border none
+
+floating_maximum_size 1200 x 600
+
+output * bg /home/polyphemus/Pictures/wallpaper.jpg stretch
+
+output HDMI-A-1 mode 1920x1080@60Hz position 0,0
+output HDMI-A-2 mode 1920x1080@74.973Hz position 1920,-450 transform 270
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# Set gaps
+gaps inner 6
+gaps outer 7
+
+
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+
+bindsym $mod+Shift+q kill
+
+floating_modifier $mod normal
+
+bindsym $mod+Shift+r reload
+#bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+bindsym $mod+Shift+e exec pcmanfm
+bindsym $mod+Shift+b exec firefox
+bindsym $mod+Shift+t exec Telegram
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
+bindsym $mod+p  exec grim -g "$(slurp -d)" ~/Pictures/screenshots/$(date +%s).png
+#bindsym $mod+u exec cat ~/Documents/usernames.txt | dmenu -nb '#1D1D1D' -nf '#aaaaaa' -sb '#8a7b70' -sf '#1D1D1D' -fn 'Ohsnap:pixelsize=12' -l 15 | awk '{print $1}' | wl-copy
+#bindsym $mod+u exec ls /home/polyphemus/Documents/repositories/nixos_config/scripts | sort | dmenu -nb '#1D1D1D' -nf '#aaaaaa' -sb '#8a7b70' -sf '#1D1D1D' -fn 'Ohsnap:pixelsize=12' -l 15 | xargs -I {} foot ~/Documents/repositories/nixos_config/scripts/{}
+bindsym $mod+shift+u exec foot ~/Documents/repositories/nixos_config/scripts/username.sh
+bindsym $mod+shift+s exec cat ~/Documents/symbols_list.txt | dmenu -nb '#1D1D1D' -nf '#aaaaaa' -sb '#8a7b70' -sf '#1D1D1D' -fn 'Ohsnap:pixelsize=12' -l 15 | cut -f1 -d "-" | wl-copy
+bindsym $mod+shift+w exec cat ~/Documents/words_list.txt | dmenu -nb '#1D1D1D' -nf '#aaaaaa' -sb '#8a7b70' -sf '#1D1D1D' -fn 'Ohsnap:pixelsize=12' -l 15 | cut -f1 -d "-" | wl-copy
+
+
+input "1278:33:PFU_Limited_HHKB-Hybrid" {
+	xkb_layout us,gr
+	xkb_options grp:ctrl_shift_toggle
+
+	repeat_rate 50
+	repeat_delay 300
+}
+
+
+
+input "1278:33:HHKB-Hybrid_1_Keyboard" {
+	xkb_layout us,gr
+	xkb_options grp:ctrl_shift_toggle
+
+	repeat_rate 50
+	repeat_delay 300
+}
+
+input "1133:16468:Logitech_Wireless_Mouse" {
+	accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
+	pointer_accel 0.5 # set mouse sensitivity (between -1 and 1)
+}
+
+
+
+#
+# Moving around:
+#
+
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+
+set $workspace1 "𝍠: محطة "
+set $workspace2 "𝍡: فايرفوكس "
+set $workspace3 "𝍢: محادثات "
+set $workspace4 "𝍣: مدير "
+set $workspace5 "𝍤: كمبيوتر مكتبي "
+set $workspace6 "𝍥: رَأسِيّ "
+set $workspace7 "𝍦: كمبيوتر مكتبي "
+set $workspace8 "𝍧: شتيت "
+set $workspace9 "𝍨: شتيت "
+set $workspace10 "𝍩: شتيت "
+
+workspace $workspace1 output HDMI-A-1
+workspace $workspace2 output HDMI-A-2
+workspace $workspace3 output HDMI-A-2
+workspace $workspace4 output HDMI-A-2
+workspace $workspace5 output HDMI-A-1
+workspace $workspace6 output HDMI-A-2
+workspace $workspace7 output HDMI-A-1
+
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+assign [app_id="firefox"] $workspace2
+assign [class="URxvt"] $workspace1
+assign [app_id="mpv"] $workspace1
+assign [class="mpv"] $workspace1
+assign [app_id="foot"] $workspace1
+assign [app_id="org.telegram.desktop"] $workspace3
+
+
+for_window [app_id="firefox"] border pixel 3, focus
+
+for_window [app_id="foot"] border pixel 14
+for_window [app_id="foot"] floating enable, resize set 630 350, focus
+
+for_window [app_id="mpv"] border pixel 4
+for_window [app_id="mpv"] floating enable
+
+for_window [class="mpv"] border pixel 4
+for_window [class="mpv"] floating enable, move up 272, move right 699
+
+# Layout stuff:
+	workspace_layout default
+
+    bindsym $mod+h splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+# Resizing containers:
+
+mode "resize" {
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# move floating windows with keys
+bindsym $mod+m mode "move" focus floating
+mode "move" {
+    bindsym $mod+Tab focus right
+
+    bindsym Left  move left
+    bindsym Down  move down
+    bindsym Up    move up
+    bindsym Right move right
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+set $text_urgent #8a7b70
+set $bg_color #212121
+set $active_border_color #212121
+set $inactive_bg_color #212121
+set $base03 #8c8c8c
+set $base04 #C0C5CE
+set $base05 #999999
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $text_urgent_bar #74857c
+set $base09 #74857c
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #FAFFEA
+set $base0D #97bbf7
+set $base0E #161616
+set $base0F #2D2D2D
+
+
+# Widow Colours
+#                       border               background           text         indicator
+client.focused          $active_border_color $active_border_color $base07      $base0F
+client.focused_inactive $inactive_bg_color   $inactive_bg_color   $base03      $bg_color
+client.unfocused        $inactive_bg_color   $inactive_bg_color   $base03      $bg_color
+client.urgent           $inactive_bg_color   $inactive_bg_color   $text_urgent $bg_color
+
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    output HDMI-A-1
+    position bottom
+	status_command i3status
+	font pango: Terminus 9
+#   strip_workspace_numbers yes
+    tray_output HDMI-A-1
+    height 18
+    bindsym button4 nop
+    bindsym button5 nop
+    workspace_buttons yes
+    colors {
+      separator  $base05
+      background $bg_color
+      statusline $base05
+#                        border    background text
+      focused_workspace  $base0E   $base0F    $base09
+      active_workspace   $base0E   $base0F    $base09
+      inactive_workspace $bg_color $bg_color  $base03
+      urgent_workspace   $bg_color $bg_color  $base0C
+    }
+}
+
+bar {
+    output HDMI-A-2
+    position bottom
+	status_command i3status
+	font pango:Terminus 9
+#   strip_workspace_numbers yes
+    tray_output HDMI-A-2
+    height 18
+    bindsym button4 nop
+    bindsym button5 nop
+    workspace_buttons yes
+    colors {
+      separator  $base05
+      background $bg_color
+      statusline $base05
+#                        border    background          text
+      focused_workspace  $base0E $base0F           $base09
+      active_workspace   $base0E $base0F           $base09
+      inactive_workspace $bg_color $bg_color           $base03
+      urgent_workspace   $bg_color $bg_color           $base0C
+    }
+}
+include /etc/sway/config.d/*
